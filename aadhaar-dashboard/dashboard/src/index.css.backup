@@ -1,0 +1,242 @@
+@import "tailwindcss";
+@import 'leaflet/dist/leaflet.css';
+
+/* Tailwind v4 Theme Extensions */
+@theme {
+    --font-orbitron: "Orbitron", sans-serif;
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+#root {
+    position: relative;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #0a0a0a;
+    color: #f3f4f6;
+}
+
+/* Glassmorphism Utility */
+.glass {
+    background: rgba(17, 17, 17, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 3px;
+}
+
+/* Leaflet Custom Styles */
+.leaflet-container {
+    background: #0a0a0a !important;
+}
+
+.leaflet-control-attribution {
+    background: rgba(10, 10, 10, 0.8) !important;
+    color: #6b7280 !important;
+    font-size: 10px !important;
+}
+
+.leaflet-control-attribution a {
+    color: #3b82f6 !important;
+}
+
+/* Premium Zoom Controls - Cyberpunk Aesthetic */
+.leaflet-control-zoom {
+    border: none !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+    position: absolute !important;
+    transform: translateY(20vw) !important;
+    left: 10px !important;
+}
+
+.leaflet-control-zoom a {
+    background: rgba(17, 17, 17, 0.95) !important;
+    color: #e5e7eb !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    width: 36px !important;
+    height: 36px !important;
+    line-height: 36px !important;
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    transition: all 0.2s ease !important;
+}
+
+.leaflet-control-zoom a:last-child {
+    border-bottom: none !important;
+}
+
+.leaflet-control-zoom a:hover {
+    background: rgba(59, 130, 246, 0.25) !important;
+    color: #ffffff !important;
+    box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.15) !important;
+}
+
+.leaflet-control-zoom a:active {
+    background: rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Popup Styles - SOLID background, no transparency */
+.leaflet-tooltip {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.custom-tooltip {
+    background: #111111 !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 10px !important;
+    padding: 0 !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+}
+
+.popup-content {
+    background: #111111;
+    border-radius: 10px;
+    padding: 14px 18px;
+    min-width: 200px;
+}
+
+.popup-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 2px;
+}
+
+.popup-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.popup-subtitle {
+    font-size: 11px;
+    color: #6b7280;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.popup-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 12px;
+    font-size: 12px;
+}
+
+.popup-label {
+    color: #9ca3af;
+}
+
+.popup-value {
+    color: #ffffff;
+    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    text-align: right;
+}
+
+.popup-intensity {
+    font-weight: 600;
+    text-align: right;
+}
+
+/* Intensity color classes */
+.popup-intensity-critical {
+    color: #f87171;
+}
+
+.popup-intensity-high {
+    color: #fb923c;
+}
+
+.popup-intensity-moderate {
+    color: #facc15;
+}
+
+.popup-intensity-low {
+    color: #60a5fa;
+}
+
+/* Trend arrows */
+.trend-up {
+    color: #4ade80;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.trend-down {
+    color: #f87171;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.trend-stable {
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+/* Pulse Animation for Critical Markers */
+@keyframes pulse-red {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    }
+}
+
+.pulse-critical {
+    animation: pulse-red 2s infinite;
+}
+
+/* Loading Skeleton Animation */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.skeleton {
+    background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
